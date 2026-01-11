@@ -1,0 +1,63 @@
+{
+  "name": "prompt-schema",
+  "version": "1.0.0",
+  "description": "Automatically convert schemas like Zod to prompts for AI SDK generate, OpenAI function calling, and structured LLM outputs",
+  "author": "Joe Seifi",
+  "license": "MIT",
+  "keywords": [
+    "zod",
+    "llm",
+    "prompts",
+    "ai",
+    "function-calling",
+    "validation",
+    "schema",
+    "openai",
+    "anthropic",
+    "structured-output",
+    "ai-sdk"
+  ],
+  "packageManager": "pnpm@10.6.4",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "lint": "eslint src tests examples",
+    "lint:fix": "eslint src tests examples --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "example:v3": "tsx examples/run-v3.ts",
+    "example:v4": "tsx examples/run-v4.ts"
+  },
+  "peerDependencies": {
+    "zod": "^3.25.0"
+  },
+  "dependencies": {
+    "zod-to-json-schema": "^3.24.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^25.0.6",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.52.0",
+    "vitest": "^3.0.0",
+    "zod": "^3.25.0"
+  }
+}
