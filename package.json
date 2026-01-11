@@ -4,6 +4,14 @@
   "description": "Automatically convert schemas like Zod to prompts for AI SDK generate, OpenAI function calling, and structured LLM outputs",
   "author": "Joe Seifi",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joeshub/prompt-schema.git"
+  },
+  "homepage": "https://github.com/joeshub/prompt-schema#readme",
+  "bugs": {
+    "url": "https://github.com/joeshub/prompt-schema/issues"
+  },
   "keywords": [
     "zod",
     "llm",
@@ -40,7 +48,8 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "example:v3": "tsx examples/run-v3.ts",
-    "example:v4": "tsx examples/run-v4.ts"
+    "example:v4": "tsx examples/run-v4.ts",
+    "prepublishOnly": "pnpm build && pnpm test:run && pnpm lint"
   },
   "peerDependencies": {
     "zod": "^3.25.0"
