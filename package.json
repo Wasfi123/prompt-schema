@@ -1,6 +1,6 @@
 {
   "name": "prompt-schema",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically convert schemas like Zod to prompts for AI SDK generate, OpenAI function calling, and structured LLM outputs",
   "author": "Joe Seifi",
   "license": "MIT",
