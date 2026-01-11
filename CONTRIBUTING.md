@@ -299,6 +299,26 @@ The codebase maintains strict type safety:
 - Prefer `const` and avoid mutations
 - Test edge cases: null, undefined, empty arrays, deep nesting
 
+## Releasing
+
+To publish a new version to npm:
+
+```bash
+# 1. Ensure you're on main and up to date
+git checkout main && git pull
+
+# 2. Bump version (choose one)
+npm version patch   # 1.0.0 → 1.0.1 (bug fixes)
+npm version minor   # 1.0.0 → 1.1.0 (new features)
+npm version major   # 1.0.0 → 2.0.0 (breaking changes)
+
+# 3. Publish to npm (runs build, tests, lint automatically)
+npm publish
+
+# 4. Push version commit and tag to GitHub
+git push && git push --tags
+```
+
 ## Questions?
 
 Open an issue or submit a PR. Contributions welcome!
