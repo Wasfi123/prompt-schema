@@ -35,9 +35,7 @@ export function extractField(
 
   // Extract examples (prefer top-level, fall back to unwrapped schema)
   const examples = topLevelExamples || actualSchema.examples;
-  const badExamples = (schema.badExamples || actualSchema.badExamples) as
-    | unknown[]
-    | undefined;
+  const badExamples = (schema.badExamples || actualSchema.badExamples) as unknown[] | undefined;
 
   const allExamples: FieldExample[] = [];
 
@@ -106,10 +104,7 @@ export function extractField(
     // Handle type arrays (union of primitives like ["string", "number"])
     field.type = 'union';
     field.unionTypes = actualSchema.type.map((t: string) => t as FieldType);
-  } else if (
-    (actualSchema.oneOf || actualSchema.anyOf) &&
-    depth < (options.maxDepth || 3)
-  ) {
+  } else if ((actualSchema.oneOf || actualSchema.anyOf) && depth < (options.maxDepth || 3)) {
     const unionData = extractUnionData(actualSchema, extractObjectFields, options, depth);
     if (unionData.isDiscriminated) {
       field.type = 'discriminated-union';

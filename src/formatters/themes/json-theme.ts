@@ -72,8 +72,7 @@ export class JSONTheme extends BaseTheme {
     if (field.objectFields) {
       obj.properties = {};
       for (const nested of field.objectFields) {
-        (obj.properties as Record<string, unknown>)[nested.name] =
-          this.fieldToJson(nested);
+        (obj.properties as Record<string, unknown>)[nested.name] = this.fieldToJson(nested);
       }
     }
 
@@ -103,9 +102,7 @@ export class JSONTheme extends BaseTheme {
 
     // Handle discriminated unions
     if (field.unionVariants) {
-      obj.oneOf = field.unionVariants.map((v) =>
-        this.variantToJson(v, field.discriminatorField),
-      );
+      obj.oneOf = field.unionVariants.map((v) => this.variantToJson(v, field.discriminatorField));
       if (field.discriminatorField) {
         obj.discriminator = field.discriminatorField;
       }

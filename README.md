@@ -27,11 +27,21 @@
 When using LLMs with structured output (OpenAI function calling, AI SDK `generateObject`, etc.), you need to tell the model what schema to follow. This library converts your Zod schemas into clear, Markdown-formatted prompt instructions that LLMs understand well.
 
 **Before** (raw JSON Schema dumped into prompt):
+
 ```json
-{"type":"object","properties":{"name":{"type":"string","maxLength":100},"email":{"type":"string","format":"email"},"age":{"type":"number","minimum":0,"maximum":120}},"required":["name","email","age"]}
+{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "maxLength": 100 },
+    "email": { "type": "string", "format": "email" },
+    "age": { "type": "number", "minimum": 0, "maximum": 120 }
+  },
+  "required": ["name", "email", "age"]
+}
 ```
 
 **After** (prompt-schema output):
+
 ```
 ## Schema
 
@@ -68,6 +78,7 @@ const prompt = getPrompts(schema);
 ```
 
 Output:
+
 ```
 ## Schema
 
@@ -146,11 +157,11 @@ const prompt = getPrompts(schema, { theme: 'condensed' });
 
 ## Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `theme` | `'standard'` \| `'condensed'` \| `'expanded'` \| `'json'` | `'standard'` | Output format |
-| `maxDepth` | `number` | `3` | Maximum nesting depth for objects/arrays |
-| `safe` | `boolean` | `false` | Return fallback message on error instead of throwing |
+| Option     | Type                                                      | Default      | Description                                          |
+| ---------- | --------------------------------------------------------- | ------------ | ---------------------------------------------------- |
+| `theme`    | `'standard'` \| `'condensed'` \| `'expanded'` \| `'json'` | `'standard'` | Output format                                        |
+| `maxDepth` | `number`                                                  | `3`          | Maximum nesting depth for objects/arrays             |
+| `safe`     | `boolean`                                                 | `false`      | Return fallback message on error instead of throwing |
 
 ---
 
@@ -213,12 +224,7 @@ const notificationSchema = z.object({
 For advanced use cases, use the `PromptSchema` class directly:
 
 ```typescript
-import {
-  PromptSchema,
-  zodV3Adapter,
-  zodV4Adapter,
-  jsonSchemaAdapter,
-} from 'prompt-schema';
+import { PromptSchema, zodV3Adapter, zodV4Adapter, jsonSchemaAdapter } from 'prompt-schema';
 
 const converter = new PromptSchema();
 converter.registerAdapter(zodV4Adapter);

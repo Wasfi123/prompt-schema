@@ -200,10 +200,7 @@ describe('Adapters', () => {
             oneOf: [{ type: 'string' }, { type: 'number' }],
           },
           conditional: {
-            anyOf: [
-              { type: 'null' },
-              { type: 'object', properties: { id: { type: 'string' } } },
-            ],
+            anyOf: [{ type: 'null' }, { type: 'object', properties: { id: { type: 'string' } } }],
           },
         },
         allOf: [{ required: ['union'] }],

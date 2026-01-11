@@ -267,13 +267,8 @@ describe('Core Plugin System', () => {
 
       const result = getPrompts(invalidSchema, { safe: true });
 
-      expect(result).toBe(
-        '## Schema\n\nProvide valid JSON matching the expected structure.',
-      );
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        'Failed to convert schema:',
-        expect.any(Error),
-      );
+      expect(result).toBe('## Schema\n\nProvide valid JSON matching the expected structure.');
+      expect(consoleWarnSpy).toHaveBeenCalledWith('Failed to convert schema:', expect.any(Error));
 
       consoleWarnSpy.mockRestore();
     });
@@ -315,9 +310,7 @@ describe('Core Plugin System', () => {
 
       const result = getPrompts(problematicSchema, { safe: true });
 
-      expect(result).toBe(
-        '## Schema\n\nProvide valid JSON matching the expected structure.',
-      );
+      expect(result).toBe('## Schema\n\nProvide valid JSON matching the expected structure.');
       expect(consoleWarnSpy).toHaveBeenCalled();
 
       consoleWarnSpy.mockRestore();

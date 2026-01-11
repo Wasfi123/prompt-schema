@@ -167,18 +167,16 @@ export const yourSchemaAdapter: SchemaAdapter = {
   name: 'your-schema',
 
   canHandle: (schema: unknown): boolean => {
-    return (
-      typeof schema === 'object' &&
-      schema !== null &&
-      '_yourMarker' in schema
-    );
+    return typeof schema === 'object' && schema !== null && '_yourMarker' in schema;
   },
 
   toJsonSchema: (schema: unknown): JsonSchema => {
     // Convert your schema format to JSON Schema
     return {
       type: 'object',
-      properties: { /* ... */ },
+      properties: {
+        /* ... */
+      },
       required: ['field1'],
     };
   },

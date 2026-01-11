@@ -3,11 +3,7 @@
  * Includes descriptions, examples, and all metadata
  */
 
-import {
-  type SchemaField,
-  type SchemaModel,
-  type UnionVariant,
-} from '../../extractors/types';
+import { type SchemaField, type SchemaModel, type UnionVariant } from '../../extractors/types';
 import { BaseTheme, type ThemeOptions } from '../types';
 
 export class ExpandedTheme extends BaseTheme {
@@ -38,9 +34,7 @@ export class ExpandedTheme extends BaseTheme {
 
     if (field.type === 'discriminated-union' && field.unionVariants) {
       // Handle discriminated unions - first show the discriminator field with all possible values
-      const discriminatorValues = field.unionVariants
-        .map((v) => v.discriminatorValue)
-        .join(' | ');
+      const discriminatorValues = field.unionVariants.map((v) => v.discriminatorValue).join(' | ');
       const discriminatorName = field.discriminatorField || 'type';
       const modifiers = this.getModifiersString(field);
 
@@ -53,9 +47,7 @@ export class ExpandedTheme extends BaseTheme {
 
       // Add examples if present
       if (field.examples && field.examples.length > 0) {
-        const exampleValues = field.examples
-          .map((ex) => JSON.stringify(ex.value))
-          .join(', ');
+        const exampleValues = field.examples.map((ex) => JSON.stringify(ex.value)).join(', ');
         output += `${indent}  - Examples: ${exampleValues}\n`;
       }
 
@@ -96,9 +88,7 @@ export class ExpandedTheme extends BaseTheme {
         const incorrectExamples = field.examples.filter((ex) => !ex.isCorrect);
 
         if (correctExamples.length > 0) {
-          const exampleValues = correctExamples
-            .map((ex) => JSON.stringify(ex.value))
-            .join(', ');
+          const exampleValues = correctExamples.map((ex) => JSON.stringify(ex.value)).join(', ');
           output += `${indent}  - Examples: ${exampleValues}\n`;
         }
 
@@ -207,16 +197,12 @@ export class ExpandedTheme extends BaseTheme {
       }
 
       // Regular union without enum
-      return field.unionTypes
-        .map((t) => (typeof t === 'string' ? t : t.type))
-        .join(' | ');
+      return field.unionTypes.map((t) => (typeof t === 'string' ? t : t.type)).join(' | ');
     }
 
     // Handle tuple
     if (field.type === 'tuple' && field.tupleItems) {
-      const items = field.tupleItems
-        .map((t) => (typeof t === 'string' ? t : t.type))
-        .join(', ');
+      const items = field.tupleItems.map((t) => (typeof t === 'string' ? t : t.type)).join(', ');
       return `[${items}]`;
     }
 
@@ -242,10 +228,7 @@ export class ExpandedTheme extends BaseTheme {
           return `array where EACH item MUST BE ONE OF [${values}]`;
         } else if (itemField.type === 'object') {
           return 'array of objects';
-        } else if (
-          itemField.type === 'discriminated-union' &&
-          itemField.discriminatorField
-        ) {
+        } else if (itemField.type === 'discriminated-union' && itemField.discriminatorField) {
           return `array of objects (${itemField.discriminatorField} as discriminator)`;
         }
       }

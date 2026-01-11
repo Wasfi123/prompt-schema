@@ -19,15 +19,7 @@ export type FieldType =
   | 'any';
 
 export interface FieldConstraint {
-  type:
-    | 'min'
-    | 'max'
-    | 'pattern'
-    | 'format'
-    | 'minItems'
-    | 'maxItems'
-    | 'minLength'
-    | 'maxLength';
+  type: 'min' | 'max' | 'pattern' | 'format' | 'minItems' | 'maxItems' | 'minLength' | 'maxLength';
   value: string | number;
   display?: string; // Optional custom display text
 }

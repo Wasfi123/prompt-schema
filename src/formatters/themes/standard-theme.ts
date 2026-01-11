@@ -27,9 +27,7 @@ export class StandardTheme extends BaseTheme {
 
     if (field.type === 'discriminated-union' && field.unionVariants) {
       // Handle discriminated unions - first show the discriminator field with all possible values
-      const discriminatorValues = field.unionVariants
-        .map((v) => v.discriminatorValue)
-        .join(' | ');
+      const discriminatorValues = field.unionVariants.map((v) => v.discriminatorValue).join(' | ');
       const discriminatorName = field.discriminatorField || 'type';
       const modifiers = this.getModifiersString(field);
 
@@ -118,16 +116,12 @@ export class StandardTheme extends BaseTheme {
 
     // Handle union
     if (field.type === 'union' && field.unionTypes) {
-      return field.unionTypes
-        .map((t) => (typeof t === 'string' ? t : t.type))
-        .join(' | ');
+      return field.unionTypes.map((t) => (typeof t === 'string' ? t : t.type)).join(' | ');
     }
 
     // Handle tuple
     if (field.type === 'tuple' && field.tupleItems) {
-      const items = field.tupleItems
-        .map((t) => (typeof t === 'string' ? t : t.type))
-        .join(', ');
+      const items = field.tupleItems.map((t) => (typeof t === 'string' ? t : t.type)).join(', ');
       return `[${items}]`;
     }
 
@@ -153,10 +147,7 @@ export class StandardTheme extends BaseTheme {
           return `array where EACH item MUST BE ONE OF [${values}]`;
         } else if (itemField.type === 'object') {
           return 'array of objects';
-        } else if (
-          itemField.type === 'discriminated-union' &&
-          itemField.discriminatorField
-        ) {
+        } else if (itemField.type === 'discriminated-union' && itemField.discriminatorField) {
           return `array of objects (${itemField.discriminatorField} as discriminator)`;
         }
       }

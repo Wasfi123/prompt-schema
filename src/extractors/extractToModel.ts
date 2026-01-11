@@ -11,10 +11,7 @@ const OPTIONS: ExtractOptions = {
   includeDefaults: false,
 };
 
-export function extractToModel(
-  schema: JsonSchema,
-  options?: ExtractOptions,
-): SchemaModel {
+export function extractToModel(schema: JsonSchema, options?: ExtractOptions): SchemaModel {
   const opts = { ...OPTIONS, ...options };
 
   const model: SchemaModel = {

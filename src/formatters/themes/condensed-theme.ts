@@ -2,11 +2,7 @@
  * Condensed theme for minimal token usage
  */
 
-import {
-  type SchemaField,
-  type SchemaModel,
-  type UnionVariant,
-} from '../../extractors/types';
+import { type SchemaField, type SchemaModel, type UnionVariant } from '../../extractors/types';
 import { BaseTheme, type ThemeOptions } from '../types';
 
 export class CondensedTheme extends BaseTheme {
@@ -29,9 +25,7 @@ export class CondensedTheme extends BaseTheme {
 
     if (field.type === 'discriminated-union' && field.unionVariants) {
       // Compact discriminated union representation
-      const discriminatorValues = field.unionVariants
-        .map((v) => v.discriminatorValue)
-        .join('|');
+      const discriminatorValues = field.unionVariants.map((v) => v.discriminatorValue).join('|');
       const discriminatorName = field.discriminatorField || 'type';
       const req = field.isRequired ? '!' : '?';
 

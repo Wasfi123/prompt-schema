@@ -57,9 +57,7 @@ export class ThemeRegistry {
   format(model: SchemaModel, themeName: string, options?: ThemeOptions): string {
     const theme = this.get(themeName);
     if (!theme) {
-      throw new Error(
-        `Theme '${themeName}' not found. Available: ${this.list().join(', ')}`,
-      );
+      throw new Error(`Theme '${themeName}' not found. Available: ${this.list().join(', ')}`);
     }
     return theme.format(model, options);
   }
